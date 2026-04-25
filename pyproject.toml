@@ -1,0 +1,24 @@
+[project]
+name = "grafana-as-code"
+version = "0.1.0"
+description = "Grafana dashboards defined as Python via grafanalib, auto-provisioned via Docker Compose."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Denys Kovtun", email = "deninarmi@gmail.com" }]
+dependencies = [
+    "grafanalib>=0.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]

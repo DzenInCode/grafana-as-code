@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e ".[dev]"
+      - run: python scripts/generate.py
+      - run: pytest -v
+      - name: Verify dashboards/ is up to date with src/
+        run: |
+          if ! git diff --quiet dashboards/; then
+            echo "::error::dashboards/ is out of date — run 'make generate' and commit"
+            git diff dashboards/
+            exit 1
+          fi
