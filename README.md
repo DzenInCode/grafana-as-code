@@ -1,5 +1,7 @@
 # grafana-as-code
 
+![grafana-as-code](assets/cover.png)
+
 Grafana dashboards defined as **Python code** (via [`grafanalib`](https://github.com/weaveworks/grafanalib)), rendered to JSON, and auto-loaded into Grafana on container start. Includes a working Prometheus + node_exporter stack so you can `docker compose up` and see real metrics in 30 seconds.
 
 > **Why this matters.** Hand-edited dashboards live in Grafana's database — version-uncontrolled, hard to review, easy to lose. With this setup every dashboard change is a Python diff, reviewed in a PR, validated in CI, and applied by restarting Grafana.
